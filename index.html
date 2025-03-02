@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Hub - Boilerplate</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <button class="theme-switch-button">
+            <span class="theme-icon">🌞</span>
+            <span class="theme-text">Light</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <h1 class="title">AI Model Hub V1 <span class="version-badge">Boilerplate</span></h1>
+
+        <div class="card">
+            <h2>Select AI Models</h2>
+            <p class="selection-limit">Maximum 4 models can be selected</p>
+            
+            <div class="model-companies">
+                <!-- Google Models -->
+                <div class="company-group expanded">
+                    <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
+                        <h3>Google Models</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="model-options">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="gemini-flash">
+                            <span class="checkbox-text">
+                                <strong>Gemini 2.0 Flash exp</strong>
+                                <span class="model-detail">Experimental flash model, Ultra-fast responses</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="gemini-pro">
+                            <span class="checkbox-text">
+                                <strong>Gemini 2.0 Pro exp</strong>
+                                <span class="model-detail">Experimental pro model, Enhanced capabilities</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- OpenAI Models -->
+                <div class="company-group expanded">
+                    <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
+                        <h3>OpenAI Models</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="model-options">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="gpt-4o">
+                            <span class="checkbox-text">
+                                <strong>GPT-4o</strong>
+                                <span class="model-detail">Latest multimodal model with advanced capabilities</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="gpt-4-turbo">
+                            <span class="checkbox-text">
+                                <strong>GPT-4 Turbo</strong>
+                                <span class="model-detail">Fast, powerful model with expanded context window</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="gpt-3.5-turbo">
+                            <span class="checkbox-text">
+                                <strong>GPT-3.5 Turbo</strong>
+                                <span class="model-detail">Efficient model for most tasks with good performance</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Claude Models -->
+                <div class="company-group expanded">
+                    <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
+                        <h3>Claude Models</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="model-options">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="claude-3-opus">
+                            <span class="checkbox-text">
+                                <strong>Claude 3 Opus</strong>
+                                <span class="model-detail">Flagship model with highest performance capabilities</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="claude-3-sonnet">
+                            <span class="checkbox-text">
+                                <strong>Claude 3 Sonnet</strong>
+                                <span class="model-detail">Balanced model for most enterprise use cases</span>
+                            </span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="model" value="claude-3-haiku">
+                            <span class="checkbox-text">
+                                <strong>Claude 3 Haiku</strong>
+                                <span class="model-detail">Fast, cost-effective model for simpler tasks</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Enter Your Prompt</h2>
+            <div class="input-group">
+                <textarea 
+                    id="prompt-input" 
+                    placeholder="Enter your prompt here..."
+                    rows="4"
+                ></textarea>
+                <div class="button-group">
+                    <div class="model-counter">Selected Models: <span>0/4</span></div>
+                    <button id="generate-btn" class="primary-button">
+                        Generate Responses
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card results-card">
+            <h2>Model Responses</h2>
+            <div class="response-grid"></div>
+
+            <template id="response-template">
+                <div class="model-response-card">
+                    <div class="model-header">
+                        <div class="model-title">
+                            <h3 class="model-name"></h3>
+                            <span class="model-tags"></span>
+                        </div>
+                        <div class="model-meta">
+                            <span class="response-time"></span>
+                            <span class="token-count"></span>
+                        </div>
+                    </div>
+                    <div class="response-content"></div>
+                    <div class="response-actions">
+                        <button class="remove-btn">Remove Response</button>
+                        <div class="action-buttons-right">
+                            <button class="copy-btn">Copy Response</button>
+                            <button class="regenerate-btn">Regenerate</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        
+        <div class="boilerplate-notice">
+            <p>This is a boilerplate version with simulated responses. No API connections are made.</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
