@@ -1,11 +1,12 @@
+/* Color variables for theming - Light theme is default */
 :root {
-    /* Light Theme Colors */
+    /* Light Theme Colors - Clean, Google-inspired palette */
     --bg-color: #f9f9f9;
     --card-bg: #ffffff;
     --text-color: #333333;
-    --primary-color: #4285f4;
-    --secondary-color: #34a853;
-    --accent-color: #ea4335;
+    --primary-color: #4285f4;  /* Google Blue */
+    --secondary-color: #34a853;  /* Google Green */
+    --accent-color: #ea4335;  /* Google Red */
     --border-color: #e0e0e0;
     --highlight-color: #f1f8ff;
     --danger-color: #ea4335;
@@ -18,16 +19,17 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Dark theme override - Activated by data-theme attribute */
 [data-theme="dark"] {
-    /* Dark Theme Colors */
+    /* Dark Theme Colors - Modern, low-light palette for night use */
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --text-color: #e0e0e0;
-    --primary-color: #5c9aff;
-    --secondary-color: #46bb65;
-    --accent-color: #ff6c5c;
+    --primary-color: #5c9aff;  /* Lighter blue for better contrast */
+    --secondary-color: #46bb65;  /* Lighter green for better contrast */
+    --accent-color: #ff6c5c;  /* Lighter red for better contrast */
     --border-color: #333333;
-    --highlight-color: #2a3f5a;
+    --highlight-color: #2a3f5a;  /* Subtle blue highlight for dark theme */
     --danger-color: #ff6c5c;
     --success-color: #46bb65;
     --header-bg: #1e1e1e;
@@ -38,12 +40,14 @@
     --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Global reset and box sizing for consistent layout */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Base body styling with modern sans-serif font stack and smooth transitions */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -53,11 +57,13 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Main content container with responsive max width */
 .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Page title styling with accent color for emphasis */
 .title {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -65,6 +71,7 @@ body {
     color: var(--primary-color);
 }
 
+/* Version badge for indicating boilerplate status */
 .version-badge {
     display: inline-block;
     background-color: var(--accent-color);
@@ -77,6 +84,7 @@ body {
     font-weight: normal;
 }
 
+/* Card component with subtle hover effect for interactive feel */
 .card {
     background-color: var(--card-bg);
     border-radius: 12px;
@@ -86,17 +94,20 @@ body {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
+/* Subtle lift effect on hover to enhance interactivity feeling */
 .card:hover {
     box-shadow: 0 6px 14px var(--shadow-color);
     transform: translateY(-2px);
 }
 
+/* Card heading with accent color to match title */
 .card h2 {
     margin-bottom: 15px;
     color: var(--primary-color);
     font-size: 1.5rem;
 }
 
+/* Help text for model selection limit */
 .selection-limit {
     color: var(--text-color);
     opacity: 0.8;
@@ -105,6 +116,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* Model company grouping for organization */
 .company-group {
     margin-bottom: 15px;
     border-radius: 8px;
@@ -112,6 +124,7 @@ body {
     overflow: hidden;
 }
 
+/* Clickable header for model company sections */
 .company-header {
     display: flex;
     justify-content: space-between;
@@ -123,34 +136,41 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Highlight effect on company header hover */
 .company-header:hover {
     background-color: var(--highlight-color);
 }
 
+/* Company title with brand color */
 .company-header h3 {
     margin: 0;
     font-size: 1.1rem;
     color: var(--primary-color);
 }
 
+/* Expand/collapse arrow with rotation animation */
 .expand-icon {
     transition: transform 0.3s;
 }
 
+/* Flips arrow when section is expanded */
 .company-group.expanded .expand-icon {
     transform: rotate(180deg);
 }
 
+/* Hidden models list with smooth height transition for accordion effect */
 .model-options {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
 }
 
+/* Shows models when section is expanded */
 .company-group.expanded .model-options {
     max-height: 500px;
 }
 
+/* Individual model checkbox row styling */
 .checkbox-option {
     display: flex;
     align-items: center;
@@ -160,14 +180,17 @@ body {
     cursor: pointer;
 }
 
+/* Removes border from last item for cleaner look */
 .checkbox-option:last-child {
     border-bottom: none;
 }
 
+/* Highlight effect on model option hover */
 .checkbox-option:hover {
     background-color: var(--highlight-color);
 }
 
+/* Custom checkbox styling for better design integration */
 .checkbox-option input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -182,16 +205,19 @@ body {
     transition: all 0.2s;
 }
 
+/* Checked state for custom checkbox */
 .checkbox-option input[type="checkbox"]:checked {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
 
+/* Disabled state for custom checkbox when max models are selected */
 .checkbox-option input[type="checkbox"]:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
+/* Custom checkmark using CSS pseudo-elements */
 .checkbox-option input[type="checkbox"]:checked::after {
     content: "";
     position: absolute;
@@ -204,21 +230,25 @@ body {
     transform: rotate(45deg);
 }
 
+/* Container for model name and description */
 .checkbox-text {
     display: flex;
     flex-direction: column;
 }
 
+/* Subtle styling for model description text */
 .model-detail {
     font-size: 0.85rem;
     opacity: 0.8;
     margin-top: 2px;
 }
 
+/* Prompt input container */
 .input-group {
     margin-top: 15px;
 }
 
+/* Textarea styling with theme color integration */
 textarea {
     width: 100%;
     padding: 12px 15px;
@@ -232,12 +262,14 @@ textarea {
     transition: border-color 0.3s;
 }
 
+/* Focus state for textarea with subtle glow effect */
 textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
 }
 
+/* Container for counter and submit button */
 .button-group {
     display: flex;
     justify-content: space-between;
@@ -245,12 +277,14 @@ textarea:focus {
     margin-top: 12px;
 }
 
+/* Model counter display */
 .model-counter {
     font-size: 0.9rem;
     color: var(--text-color);
     opacity: 0.8;
 }
 
+/* Main action button styling */
 .primary-button {
     background-color: var(--primary-color);
     color: var(--button-text);
@@ -262,38 +296,46 @@ textarea:focus {
     transition: background-color 0.3s, transform 0.1s;
 }
 
+/* Button hover state with brightness increase */
 .primary-button:hover {
     background-color: var(--primary-color);
     filter: brightness(1.1);
 }
 
+/* Button active state with click feedback */
 .primary-button:active {
     transform: scale(0.98);
 }
 
+/* Disabled button state */
 .primary-button:disabled {
     background-color: var(--border-color);
     cursor: not-allowed;
 }
 
+/* Results area with minimum height to prevent layout shift */
 .results-card {
     min-height: 200px;
 }
 
+/* Response grid for holding multiple AI responses */
 .response-grid {
     display: grid;
     gap: 20px;
     margin-top: 20px;
 }
 
+/* Single column layout when only one model is selected */
 .response-grid.single-model {
     grid-template-columns: 1fr;
 }
 
+/* Multi-column responsive layout when multiple models are selected */
 .response-grid.multi-model {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
+/* Individual response card styling */
 .model-response-card {
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -302,10 +344,12 @@ textarea:focus {
     transition: box-shadow 0.3s;
 }
 
+/* Subtle highlight for response cards on hover */
 .model-response-card:hover {
     box-shadow: 0 4px 8px var(--shadow-color);
 }
 
+/* Response card header with model info */
 .model-header {
     display: flex;
     justify-content: space-between;
@@ -315,23 +359,27 @@ textarea:focus {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Container for model name and tags */
 .model-title {
     display: flex;
     flex-direction: column;
 }
 
+/* Model name styling to match heading colors */
 .model-name {
     margin: 0;
     font-size: 1.1rem;
     color: var(--primary-color);
 }
 
+/* Model tags styling for attributes display */
 .model-tags {
     font-size: 0.8rem;
     opacity: 0.8;
     margin-top: 2px;
 }
 
+/* Container for response metadata (time, tokens) */
 .model-meta {
     display: flex;
     gap: 10px;
@@ -339,6 +387,7 @@ textarea:focus {
     opacity: 0.8;
 }
 
+/* Response content area with scrolling for long responses */
 .response-content {
     padding: 15px;
     min-height: 150px;
@@ -346,6 +395,7 @@ textarea:focus {
     overflow-y: auto;
 }
 
+/* Footer for response actions (buttons) */
 .response-actions {
     display: flex;
     justify-content: space-between;
@@ -353,6 +403,7 @@ textarea:focus {
     border-top: 1px solid var(--border-color);
 }
 
+/* Common styling for all action buttons */
 .response-actions button {
     padding: 8px 12px;
     border-radius: 6px;
@@ -364,47 +415,57 @@ textarea:focus {
     border: 1px solid var(--border-color);
 }
 
+/* Common hover effect for action buttons */
 .response-actions button:hover {
     background-color: var(--highlight-color);
 }
 
+/* Active state feedback for buttons */
 .response-actions button:active {
     transform: scale(0.98);
 }
 
+/* Disabled state for buttons */
 .response-actions button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
+/* Container for right-aligned buttons */
 .action-buttons-right {
     display: flex;
     gap: 8px;
 }
 
+/* Remove button with danger color */
 .remove-btn {
     color: var(--danger-color);
     border-color: var(--danger-color) !important;
 }
 
+/* Special hover effect for remove button */
 .remove-btn:hover {
     background-color: rgba(234, 67, 53, 0.1);
 }
 
+/* Hover effect for copy button */
 .copy-btn:hover {
     background-color: var(--highlight-color);
 }
 
+/* Regenerate button with success color */
 .regenerate-btn {
     background-color: var(--secondary-color) !important;
     color: var(--button-text) !important;
     border-color: var(--secondary-color) !important;
 }
 
+/* Hover effect for regenerate button */
 .regenerate-btn:hover {
     filter: brightness(1.1);
 }
 
+/* Theme switch button container */
 .theme-switch {
     position: fixed;
     top: 20px;
@@ -412,6 +473,7 @@ textarea:focus {
     z-index: 100;
 }
 
+/* Theme toggle button styling */
 .theme-switch-button {
     display: flex;
     align-items: center;
@@ -426,12 +488,13 @@ textarea:focus {
     transition: all 0.3s;
 }
 
+/* Hover effect for theme button with elevation */
 .theme-switch-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-/* Loading Animation */
+/* Loading animation container with centered alignment */
 .loading-container {
     display: flex;
     flex-direction: column;
@@ -441,6 +504,7 @@ textarea:focus {
     min-height: 150px;
 }
 
+/* Wave loading animation container */
 .wave-loading {
     display: flex;
     justify-content: center;
@@ -449,6 +513,7 @@ textarea:focus {
     width: 60px;
 }
 
+/* Individual bars in the wave loading animation */
 .wave-bar {
     width: 4px;
     height: 10px;
@@ -458,34 +523,41 @@ textarea:focus {
     animation: wave 1s ease-in-out infinite;
 }
 
+/* Staggered delay for second bar */
 .wave-bar:nth-child(2) {
     animation-delay: 0.1s;
 }
 
+/* Staggered delay for third bar */
 .wave-bar:nth-child(3) {
     animation-delay: 0.2s;
 }
 
+/* Staggered delay for fourth bar */
 .wave-bar:nth-child(4) {
     animation-delay: 0.3s;
 }
 
+/* Staggered delay for fifth bar */
 .wave-bar:nth-child(5) {
     animation-delay: 0.4s;
 }
 
+/* Wave animation keyframes for loading indicator */
 @keyframes wave {
     0% { height: 10px; }
     50% { height: 30px; }
     100% { height: 10px; }
 }
 
+/* Loading indicator text */
 .loading-text {
     margin-top: 15px;
     color: var(--text-color);
     font-size: 0.9rem;
 }
 
+/* Work in progress indicator (used for future features) */
 .work-in-progress {
     display: flex;
     flex-direction: column;
@@ -495,18 +567,21 @@ textarea:focus {
     text-align: center;
 }
 
+/* Animated icon for work in progress sections */
 .work-in-progress-icon {
     font-size: 2rem;
     margin-bottom: 15px;
     animation: pulse 2s infinite;
 }
 
+/* Pulse animation for work in progress icon */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.1); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* Bold notice for indicating boilerplate status */
 .boilerplate-notice {
     text-align: center;
     padding: 10px;

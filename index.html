@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Theme toggle button fixed in the top-right corner -->
     <div class="theme-switch">
         <button class="theme-switch-button">
             <span class="theme-icon">🌞</span>
@@ -17,12 +18,13 @@
     <div class="container">
         <h1 class="title">AI Model Hub V1 <span class="version-badge">Boilerplate</span></h1>
 
+        <!-- Model selection card - Users can select up to 4 AI models to compare -->
         <div class="card">
             <h2>Select AI Models</h2>
             <p class="selection-limit">Maximum 4 models can be selected</p>
             
             <div class="model-companies">
-                <!-- Google Models -->
+                <!-- Google's Gemini models - Experimental and high-performance options -->
                 <div class="company-group expanded">
                     <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
                         <h3>Google Models</h3>
@@ -46,7 +48,7 @@
                     </div>
                 </div>
                 
-                <!-- OpenAI Models -->
+                <!-- OpenAI's GPT models - From latest GPT-4o to faster GPT-3.5 -->
                 <div class="company-group expanded">
                     <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
                         <h3>OpenAI Models</h3>
@@ -77,7 +79,7 @@
                     </div>
                 </div>
                 
-                <!-- Claude Models -->
+                <!-- Anthropic's Claude models - From most capable Opus to fastest Haiku -->
                 <div class="company-group expanded">
                     <div class="company-header" onclick="this.parentElement.classList.toggle('expanded')">
                         <h3>Claude Models</h3>
@@ -110,6 +112,7 @@
             </div>
         </div>
 
+        <!-- Prompt input card - Where users enter their query for the models -->
         <div class="card">
             <h2>Enter Your Prompt</h2>
             <div class="input-group">
@@ -127,10 +130,12 @@
             </div>
         </div>
 
+        <!-- Results card - Where AI responses will appear after generation -->
         <div class="card results-card">
             <h2>Model Responses</h2>
             <div class="response-grid"></div>
 
+            <!-- Response template - Used to create new response cards via JavaScript -->
             <template id="response-template">
                 <div class="model-response-card">
                     <div class="model-header">
@@ -155,6 +160,7 @@
             </template>
         </div>
         
+        <!-- Notice to indicate this is a boilerplate with simulated responses only -->
         <div class="boilerplate-notice">
             <p>This is a boilerplate version with simulated responses. No API connections are made.</p>
         </div>

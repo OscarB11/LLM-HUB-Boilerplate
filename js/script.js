@@ -1,24 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuration
-    const MAX_MODELS = 4;
-    let selectedModels = 0;
+    // Configuration constants and state variables
+    const MAX_MODELS = 4; // Hard limit for UI performance and space
+    let selectedModels = 0; // Track how many models are currently selected
     
-    // DOM references
+    // Cache important DOM elements for performance
     const checkboxes = document.querySelectorAll('input[type="checkbox"][name="model"]');
     const generateBtn = document.getElementById('generate-btn');
     const promptInput = document.getElementById('prompt-input');
     const responseGrid = document.querySelector('.response-grid');
     const modelCounter = document.querySelector('.model-counter span');
 
-    // Theme switching
+    // Theme management - detect system preference and set up toggle
     const themeSwitch = document.querySelector('.theme-switch-button');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     
+    // Initialize theme based on system preference
     if (prefersDarkScheme.matches) {
         document.documentElement.setAttribute('data-theme', 'dark');
         updateThemeButton('dark');
     }
 
+    // Set up theme toggle button click handler
     themeSwitch.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -26,25 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         updateThemeButton(newTheme);
     });
 
+    // Update theme button icon and text based on current theme
     function updateThemeButton(theme) {
         const icon = themeSwitch.querySelector('.theme-icon');
         const text = themeSwitch.querySelector('.theme-text');
         
         if (theme === 'dark') {
-            icon.textContent = '🌙';
+            icon.textContent = '🌙'; // Moon icon for dark mode
             text.textContent = 'Dark';
         } else {
-            icon.textContent = '🌞';
+            icon.textContent = '🌞'; // Sun icon for light mode
             text.textContent = 'Light';
         }
     }
 
-    // Checkbox management
+    // Set up model checkboxes with selection limit enforcement
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             if (checkbox.checked) {
+                // Check if we've hit the selection limit
                 if (selectedModels >= MAX_MODELS) {
-                    checkbox.checked = false;
+                    checkbox.checked = false; // Undo the selection
                     alert(`Maximum ${MAX_MODELS} models can be selected`);
                     return;
                 }
@@ -53,20 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedModels--;
             }
             
-            // Update counter and checkbox states
+            // Update the counter display and manage checkbox disabled states
             modelCounter.textContent = `${selectedModels}/${MAX_MODELS}`;
             checkboxes.forEach(cb => {
                 if (!cb.checked) {
+                    // Only disable unchecked boxes when at the limit
                     cb.disabled = selectedModels >= MAX_MODELS;
                 }
             });
         });
     });
 
-    // Simple demo response generation
+    // Handle generate button click - core functionality
     generateBtn.addEventListener('click', async () => {
         const prompt = promptInput.value.trim();
         
+        // Validate inputs before proceeding
         if (!prompt) {
             alert('Please enter a prompt');
             return;
@@ -77,26 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Update UI to show processing state
         generateBtn.disabled = true;
         generateBtn.textContent = 'Generating...';
         
-        // Clear previous responses
+        // Clear any previous responses to start fresh
         responseGrid.innerHTML = '';
         
-        // Set appropriate grid layout
+        // Set grid layout based on number of models for optimal display
         const selectedModelElements = document.querySelectorAll('input[type="checkbox"][name="model"]:checked');
         responseGrid.classList.remove('single-model', 'multi-model');
         responseGrid.classList.add(selectedModelElements.length === 1 ? 'single-model' : 'multi-model');
         
-        // Track completion of responses for proper button re-enabling
+        // Track completion for proper button re-enabling
         let completedResponses = 0;
         const totalResponses = selectedModelElements.length;
         
-        // Process each selected model
+        // Generate a response for each selected model
         selectedModelElements.forEach(modelElement => {
             const modelId = modelElement.value;
             
-            // Create a dedicated card element for this model
+            // Create a dedicated response card for this model
             const responseCard = document.createElement('div');
             responseCard.className = 'model-response-card';
             responseCard.id = `response-${modelId}`;
